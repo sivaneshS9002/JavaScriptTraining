@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Display App</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+      .main-content
+      {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+        .main-content button {
+            border: none;
+            padding: 10px;
+            background: blue;
+            color: white;
+            width: 80px;
+        }
+
+        input {
+            border-left: none;
+            padding: 10px;
+            width: 250px;
+            border: 1px solid lightgray;
+        }
+        .city-container
+        {
+            display: flex;
+            justify-content: space-between;
+        }
+        .weather-img-container
+        {
+            display: flex;
+           justify-content: space-between;
+        }
+        .weather-img-container img
+        {
+          height: 50px;
+          width: 50px;
+        }
+        .err-body 
+        {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-content">
+       <div style="border: 1px solid skyblue;">
+       <div style="border: 1px solid black;padding: 15px;width: fit-content;margin:5px;">
+        <h1>Weather DashBoard</h1>
+        <div style="display: flex;">
+            <input type="text" class="city-name" placeholder="Enter city name" />
+            <button type="submit" class="btn">Search</button>
+        </div>
+        <div class="city-container">
+            <p>City Name:</p>
+            <p class="cName"></p>
+        </div>
+        <div class="city-container">
+            <p>Temprature:</p>
+            <p class="celsius-st"></p>
+        </div>
+        <div class="city-container">
+            <p>Humidity:</p>
+            <p class="Humidity"></p>
+        </div>
+        <div class="weather-img-container">
+            <p>Weather Icon:</p>
+        </div>
+          <div class="err-body">
+          
+          </div>
+       </div>
+       </div>
+    </div>
+</body>
+<script src="weather.js"></script>
+
+</html>
