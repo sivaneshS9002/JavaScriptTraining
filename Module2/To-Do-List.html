@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+</head>
+      <style>
+          * 
+           {
+             margin: 0px;
+             padding: 0px;
+           }
+            .main-container
+            {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 40px;
+            }
+           .input-box
+           {
+             height: 30px;
+             width: 200px;
+             padding-left: 5px;
+           }
+           .Add-btn
+           {
+             color: white;
+             background-color: blue;
+             padding: 10px;
+             border: none;
+             border-radius: 5px;
+           }
+           ul{
+            list-style: none;
+           }
+           li
+           {
+            padding: 10px;
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+             border-bottom: 2px solid lightgray;
+           }
+           li button 
+           {
+              color: white;
+              background: red;
+              border: none;
+              padding: 5px;
+              border-radius: 3px;
+           }
+           li span
+           {
+            font-size: 20px;
+            font-weight: 600;
+           }
+      </style>
+<body>
+       <div class="main-container">
+        
+          <div style="border: 1px solid rgb(20, 197, 241);">
+             <div style="border: 1px solid gray;padding-top: 30px;padding-left: 25px;padding-right: 25px;height: 420px;margin: 4px;border-radius: 3px;">
+                  <h1 style="padding-bottom: 15px;">To-Do-List</h1>
+                  <div>
+                     <div>
+                      <input type="text" class="input-box" placeholder="Enter a new Task"/>
+                      <button class="Add-btn">Add Task</button>
+                     </div>
+                      <ul class="ul-list">
+
+                      </ul>
+                  </div>
+             </div>
+          </div>
+       </div>
+</body>
+<script>
+      const task=[];
+       document.querySelector('.Add-btn').addEventListener('click',()=>{
+        const message = document.querySelector('.input-box').value;
+        
+         if(message==="")
+         {
+            alert("Please Enter The Task!!!!!");
+         }
+         else{
+            task.push({id:task.length+1,name:message});
+            display();
+          }
+       });
+
+       function display()
+       {
+           let s='';
+           for(let i=0;i<task.length;i++)
+           {
+              s+=`<li key=${i}> <input type="checkbox" onChange="fun(${i},this.checked)" class="check-st"/> <span class='mess-st${i}'>${task[i].name}</span><button onClick="deleteTask(${i})">Detele Task</button></li>`;
+           }
+           document.querySelector('.ul-list').innerHTML =s;
+       }
+           function deleteTask(index)
+           {
+            console.log(task);
+            task.splice(index,1);
+            display();
+           }
+            
+           function fun(index,v)
+           {
+                 if(v){
+                     document.querySelector(`.mess-st${index}`).style.textDecoration ='line-through';
+                 }
+                 else{
+                  document.querySelector(`.mess-st${index}`).style.textDecoration ='none';
+                 }
+           }
+        
+
+</script>
+</html>
