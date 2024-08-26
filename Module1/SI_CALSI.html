@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Interest Calculator</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .main-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .err-message {
+            color: red;
+            display: none;
+            font-weight: 700;
+        }
+
+        label {
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .first-container {
+            border: 2px solid rgb(8, 139, 190);
+            height: 90%;
+        }
+        .principal-amount {
+           width: 90%;
+            height: 30px;
+        }
+
+        .rate {
+           width: 90%;
+            height: 30px;
+        }
+
+        .year {
+            width: 90%;
+            height: 30px;
+        }
+        input
+        {
+            padding-left: 8px;
+        }
+        .Additional-c
+        {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .btn
+        {
+            color: white;
+            background: green;
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div style="border: 2px solid skyblue;">
+            <div style="border: 1px solid grey; display: flex;flex-direction: column;gap: 10px;padding: 10px;margin: 15px;">
+                <form id="form-detail">
+                    <div style="display: flex;justify-content: center;">
+                        <h1>Advanced Simple Interest</h1>
+                    </div>
+                    <div style="display: flex;justify-content: center;margin-bottom: 4px;">
+                        <h1>Calculator</h1>
+                    </div>
+                    <div style="display: flex;flex-direction: column;align-items: center;gap: 1rem;">
+                        <label for="Principal-amt">Principal Amount:</label>
+                        <input type="text" name="p-amt" class="principal-amount" placeholder="Enter principal amount" />
+                        <p class="err-message">Enter amount Between($500 t0 $10,000)</p>
+                        <label for="rate">Rate Of Interest(%)</label>
+                        <input type="text" name="r-percent" class="rate" placeholder="Enter interest rate" />
+                        <label for="time">Time (Years)</label>
+                        <input type="text" class="year" placeholder="Enter time in Years" />
+                        <button type="submit" class="btn">Calculate Interest</button>
+                    </div>
+                </form>
+                <div style="display: flex;flex-direction: column;align-items: center;gap: 10px; font-weight: 600;">
+                    <p>Interest: <span class="Interest-c"></span> </p>
+                    <p>Total Amount:<span class="Total"></span></p>
+                    <p class="ad-st">Additional Information:</p>
+                    <span class="Additional-c">---</span>
+                </div>
+            </div>
+        </div>    
+    </div>
+</body>
+<script src="SI_CALSI.js">
+</script>
+
+</html>
