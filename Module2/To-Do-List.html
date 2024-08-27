@@ -58,6 +58,14 @@
             font-size: 20px;
             font-weight: 600;
            }
+           .edit-btnC
+           {
+            color: white;
+              background: blue;
+              border: none;
+              padding: 5px;
+              border-radius: 3px;
+           }
       </style>
 <body>
        <div class="main-container">
@@ -67,8 +75,10 @@
                   <h1 style="padding-bottom: 15px;">To-Do-List</h1>
                   <div>
                      <div>
+                        <form id="submit">
                       <input type="text" class="input-box" placeholder="Enter a new Task"/>
-                      <button class="Add-btn">Add Task</button>
+                      <button type="submit" class="Add-btn">Add Task</button>
+                     </form>
                      </div>
                       <ul class="ul-list">
 
@@ -80,17 +90,19 @@
 </body>
 <script>
       const task=[];
-       document.querySelector('.Add-btn').addEventListener('click',()=>{
+       document.querySelector('#submit').addEventListener('submit',(event)=>{
+         event.preventDefault();
         const message = document.querySelector('.input-box').value;
-        
-         if(message==="")
+         if(!message)
          {
-            alert("Please Enter The Task!!!!!");
+            document.querySelector('.input-box').style.borderColor='red';
          }
          else{
+            document.querySelector('.input-box').style.borderColor='lightgrey';
             task.push({id:task.length+1,name:message});
             display();
           }
+           document.querySelector('.input-box').value=""
        });
 
        function display()
@@ -98,7 +110,7 @@
            let s='';
            for(let i=0;i<task.length;i++)
            {
-              s+=`<li key=${i}> <input type="checkbox" onChange="fun(${i},this.checked)" class="check-st"/> <span class='mess-st${i}'>${task[i].name}</span><button onClick="deleteTask(${i})">Detele Task</button></li>`;
+              s+=`<li key=${i}> <input type="checkbox" onChange="fun(${i},this.checked)" class="check-st"/> <span  class='mess-st${i}'>${task[i].name}</span><button class="edit-btnC edit-btn${i}" onClick="editTask(${i})">Edit Task</button><button onClick="deleteTask(${i})">Detele Task</button></li>`;
            }
            document.querySelector('.ul-list').innerHTML =s;
        }
@@ -119,6 +131,25 @@
                  }
            }
         
+           function editTask(index)
+           {
+            const message = document.querySelector(`.mess-st${index}`);
+            const editBtn =document.querySelector(`.edit-btn${index}`);
+            if(editBtn.textContent==="Edit Task")
+             {
+             editBtn.textContent='UpdateTask';
+             message.setAttribute('contenteditable','true');
+             }
+             else 
+             {
+               editBtn.textContent='Edit Task';
+               message.setAttribute('contenteditable','false');
+                let updatedText = message.textContent;
+                console.log(updatedText);
+                task[index].name = updatedText;
+                console.log(task);
+             }
+           }
 
 </script>
 </html>
