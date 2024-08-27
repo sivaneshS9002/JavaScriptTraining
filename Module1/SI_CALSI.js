@@ -39,7 +39,7 @@ let n=document.querySelector('.year').value;
 let r=document.querySelector('.rate').value;
  if(n==="" || r==="" || p==="")
  {
-   alert('-----Enter the Appropriate fields----')
+   alert('-----Enter the Appropriate fields----');
  }
   n=Number(n);
   r=Number(r);
@@ -48,32 +48,47 @@ let r=document.querySelector('.rate').value;
   {
     if(p<1000)
     {
-        r=5;
+  
+        document.querySelector('.Interest-c').innerHTML = `${interest(p,r,n)}`;
+  document.querySelector('.Total').innerHTML = `${interest(p,r,n)+p}`;
+  document.querySelector('.Additional-c').innerHTML = `Your applied with extra ${r}% rate`;
     }
     else if(p>1000 &&  p<5000)
     {
-       r=7;
+    
+       document.querySelector('.Interest-c').innerHTML = `${interest(p,r,n)}`;
+  document.querySelector('.Total').innerHTML = `${interest(p,r,n)+p}`;
+  document.querySelector('.Additional-c').innerHTML = `Your applied with extra ${r}% rate`;
+
     }
     else if(p>5000)
     {
-        r=10;
+
+        document.querySelector('.Interest-c').innerHTML = `${interest(p,r,n)}`;
+  document.querySelector('.Total').innerHTML = `${interest(p,r,n)+p}`;
+  document.querySelector('.Additional-c').innerHTML = `Your applied with extra ${r}% rate`;
     }
     else if(n>5)
     {
          b=true;
         r=r+2;
+        document.querySelector('.Interest-c').innerHTML = `${interest(p,r,n)}`;
+       document.querySelector('.Total').innerHTML = `${interest(p,r,n)+p}`;
         document.querySelector('.Additional-c').innerHTML = 'Your applied with extra 2% rate';
     }
 }
   else{
     document.querySelector('.err-message').style.display = 'block';
   }
-  document.querySelector('.Interest-c').innerHTML = `${interest(p,r,n)}`;
-  document.querySelector('.Total').innerHTML = `${interest(p,r,n)+p}`;
     if(b===false)
     {
      document.querySelector('.Additional-c').innerHTML = `---`;
     }
+
+
+     document.querySelector('.principal-amount').value ="";
+     document.querySelector('.year').value="";
+     document.querySelector('.rate').value="";
 });
 function interest(principal,rate,time)
 {
