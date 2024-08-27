@@ -11,7 +11,8 @@ class Product {
 }
 let inventory = []; 
 
- document.querySelector('.product-name').addEventListener('input',(event)=>{
+  function inputFun(event)
+  {
     if(!isNaN(event.target.value))
     {
         document.querySelector('.product-name').style.color ='red';
@@ -21,9 +22,10 @@ let inventory = [];
         document.querySelector('.product-name').style.color ='black';
         document.querySelector('.product-name').style.borderColor='lightgrey';
     }
- });
+  }
 
-document.getElementById('details').addEventListener('submit',(event)=>{
+    function handleSubmit(event){
+
    event.preventDefault();
      const Pname =document.querySelector('.product-name').value;
      const Pprice =document.querySelector('.price-input').value;
@@ -47,7 +49,7 @@ document.getElementById('details').addEventListener('submit',(event)=>{
     document.querySelector('.product-name').value="";
     document.querySelector('.price-input').value="";
     document.querySelector('.quantity-input').value="";
-}); 
+  }
 
 
      function editFunction(index)

@@ -50,6 +50,10 @@
             display: flex;
             justify-content: center;
         }
+        .err-mess
+        {
+            display: none;
+        }
     </style>
 </head>
 
@@ -59,8 +63,8 @@
        <div style="border: 1px solid black;padding: 15px;width: fit-content;margin:5px;">
         <h1>Weather DashBoard</h1>
         <div style="display: flex;">
-            <input type="text" class="city-name" placeholder="Enter city name" />
-            <button type="submit" class="btn">Search</button>
+            <input type="text" oninput="handleInput(event)" class="city-name" placeholder="Enter city name" />
+            <button type="submit"  onclick="handleClick(event)" class="btn">Search</button>
         </div>
         <div class="city-container">
             <p>City Name:</p>
@@ -78,7 +82,7 @@
             <p>Weather Icon:</p>
         </div>
           <div class="err-body">
-          
+            <p style="color:red;" class="err-mess"></p>
           </div>
        </div>
        </div>

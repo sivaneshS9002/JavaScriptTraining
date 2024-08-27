@@ -1,4 +1,4 @@
-document.querySelector('.city-name').addEventListener('input', (event) => {
+function handleInput(event) {
      if (Number(event.target.value)) {
           document.querySelector('.city-name').style.color = 'red';
           document.querySelector('.city-name').style.borderColor = 'red';
@@ -8,15 +8,22 @@ document.querySelector('.city-name').addEventListener('input', (event) => {
           document.querySelector('.city-name').style.borderColor = 'black';
      }
 
-});
-
-   
+}
 
 
-document.querySelector('.btn').addEventListener('click', () => {
+
+
+function handleClick(event) {
+     event.preventDefault();
+     const err = document.querySelector('.err-mess');
      const cityName = document.querySelector('.city-name').value;
+     const celsius = document.querySelector('.celsius-st');
+     const cName = document.querySelector('.cName');
+     const humidity = document.querySelector('.Humidity');
+     const image = document.querySelector('.weather-img-container');
      if (!cityName || Number(cityName)) {
-          document.querySelector('.err-body').innerHTML = `<p style="color:red;font-weight:700">----Please Enter the CityName----</p>`
+          err.style.display = 'block';
+          err.textContent = "Enter the Valid Inputs";
      }
      else {
           fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=f862069d0e86f8686e96aec5014dae92`)
@@ -26,15 +33,30 @@ document.querySelector('.btn').addEventListener('click', () => {
                          return response.json();
                     }
                     else {
-                         document.querySelector('.err-body').innerHTML = `<p style="color:red;">In valid City Name</p>`;
+                         console.log(response)
+                         if (response.status === 401) {
+                              err.style.display = 'block';
+                              err.textContent = 'Server did not Respond ';
+
+                         }
+                         else if (response.status === 404) {
+                              err.style.display = 'block';
+                              err.textContent = 'Invalid CityName';
+                         }
+                         celsius.textContent = "";
+                         cName.textContent = "";
+                         humidity.textContent = "";
+                         image.innerHTML = "";
+
                     }
                }).then((data) => {
-                    document.querySelector('.weather-img-container').innerHTML = `<p>Weather Icon:</p><img src=https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png
+                    image.innerHTML = `<p>Weather Icon:</p><img src=https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png
 " />`
-                    document.querySelector('.celsius-st').textContent = `${data.main.temp - 273} C°`;
-                    document.querySelector('.cName').textContent = cityName;
-                    document.querySelector('.Humidity').textContent = `${data.main.humidity} %`;
+                    celsius.textContent = `${data.main.temp - 273} C°`;
+                    cName.textContent = cityName;
+                    humidity.textContent = `${data.main.humidity} %`;
                     console.log(data.main);
+                    err.style.display = 'none';
                })
                .catch((error) => {
                     console.log(error);
@@ -42,5 +64,5 @@ document.querySelector('.btn').addEventListener('click', () => {
      }
 
 
-      document.querySelector('.city-name').value="";
-})
+     document.querySelector('.city-name').value = "";
+}

@@ -98,15 +98,15 @@
                 <div style="display: flex;justify-content: center;">
                     <p>Student Name:</p>
                 </div>
-                <input type="text" name="st-name" class="st-name" required placeholder="Enter student name" />
+                <input type="text" name="st-name" class="st-name" oninput="handleStudent(event)" required placeholder="Enter student name" />
                 <div style="display: flex;justify-content: center;">
                     <p>Grade:</p>
                 </div>
                 <input type="number" name="grad-mark" class="grade-st" required="required" placeholder="Enter grade" />
                   <p class="error-message"></p>
                 <div style="display: flex;flex-direction: column;gap: 15px;align-items: center;">
-                    <button class="add-btn">Add Student</button>
-                    <button class="grade-btn">Display Grades</button>
+                    <button class="add-btn" onclick="handleAdd(event)">Add Student</button>
+                    <button onclick="handleGradeBtn(event)" class="grade-btn">Display Grades</button>
                 </div>
                 <div style="display: flex; flex-direction:column;gap:13px ;">
                     <h3>Grades List:</h3>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div style="display: flex;flex-direction: column;align-items: center;gap: 10px;">
-                    <button class="c-st">Calculate Average Grade</button>
+                    <button class="c-st" onclick="handleCalculate(event)">Calculate Average Grade</button>
                     <p style="font-weight: 600;" class="avg-name">Average Grade:<span class="avg-st"></span></p>
                 </div>
 

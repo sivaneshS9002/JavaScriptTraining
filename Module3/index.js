@@ -1,22 +1,22 @@
 const arr = [];
-
-document.querySelector('.st-name').addEventListener('input', (event) => {
+ function handleStudent(event) {
     if (Number(event.target.value)) {
         document.querySelector('.st-name').style.color = 'red';
         document.querySelector('.st-name').style.borderColor = 'red';
     }
     else {
-        document.querySelector('.st-name').style.color = 'lightgrey';
+        document.querySelector('.st-name').style.color = 'black';
         document.querySelector('.st-name').style.borderColor = 'lightgrey';
     }
-});
+}
 
 
 
 
 
 
-document.querySelector('.add-btn').addEventListener('click', () => {
+function handleAdd(event) {
+    event.preventDefault();
     let stName = document.querySelector('.st-name').value;
     let stGrade = document.querySelector('.grade-st').value;
     if (!stName || !stGrade) {
@@ -54,8 +54,8 @@ document.querySelector('.add-btn').addEventListener('click', () => {
     }
       document.querySelector('.st-name').value ="";
       document.querySelector('.grade-st').value ="";
-});
-document.querySelector('.grade-btn').addEventListener('click', () => {
+}
+   function handleGradeBtn(event){
     let s = '';
 
     if (arr.length == 0) {
@@ -68,8 +68,8 @@ document.querySelector('.grade-btn').addEventListener('click', () => {
         }
         document.querySelector('.student-list').innerHTML = s;
     }
-});
-document.querySelector('.c-st').addEventListener('click', () => {
+};
+ function handleCalculate(event) {
     if (arr.length == 0) {
         document.querySelector('.error-message').textContent='Please enter the given Input fields'; 
         document.querySelector('.error-message').style.display="block";  
@@ -83,4 +83,4 @@ document.querySelector('.c-st').addEventListener('click', () => {
     console.log(avg / arr.length);
     document.querySelector('.avg-st').textContent = Math.round(avg / arr.length);
 }
-});
+}
