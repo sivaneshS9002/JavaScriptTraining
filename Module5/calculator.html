@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+     <style>
+          .number-btns
+          {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+          } 
+          .number-btns div{
+            border: none;
+            background-color: lightgray;
+            padding: 7px;
+          }
+          .col-st
+          {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+     </style>
+</head>
+<body>
+      <div class="mainContainer">
+       <div style="width:fit-content ;"> 
+         <input type="text" placeholder="0"/>
+         <div class="col-st">
+            <div class="number-btns">
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+                <div>/</div>
+            </div>
+            <div class="number-btns">
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>*</div>
+            </div>
+            <div class="number-btns">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>-</div>
+            </div>
+            <div class="number-btns">
+                <div>0</div>
+                <div>C</div>
+                <div>=</div>
+                <div>+</div>
+            </div>
+
+         </div>
+        </div> 
+      </div>
+</body>
+</html>

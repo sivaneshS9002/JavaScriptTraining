@@ -1,82 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory Management System</title>
     <style>
-        label
-        {
+        label {
             display: block;
         }
-        button
-        {
+
+        button {
             display: block;
         }
-        input
-        {
-             width: 300px;
-             padding-left: 5px;
+
+        input {
+            width: 300px;
+            padding-left: 5px;
         }
-        button 
-        {
-             width: 310px;
+
+        button {
+            width: 310px;
         }
-        table
-        {
+
+        table {
             border-collapse: collapse;
             width: 310px;
         }
-        tr,thead,td,th
-          {
+
+        tr,
+        thead,
+        td,
+        th {
             padding: 6px;
-             border: 1px solid lightgrey;
-          }
-          .main-content
-          {
+            border: 1px solid lightgrey;
+        }
+
+        .main-content {
             display: flex;
             align-items: center;
             justify-content: center;
-          }
-          .inside-c *
-          {
+        }
+
+        .inside-c * {
             padding-top: 10px;
             padding-bottom: 10px;
-          }
-          #details  button
-          { 
-          background-color: blue;
-          color: white;
-          border: none;
-          }
+        }
+
+        #details button {
+            background-color: blue;
+            color: white;
+            border: none;
+        }
+        #edit-btn
+        {
+            width: fit-content;
+            height: fit-content;
+            background: blue;
+            color: white;
+            padding-left: 5px;
+            padding-right: 5px;
+            border: none;
+        }
+        #delete-btn
+        {
+            width: fit-content;
+            height: fit-content;
+            background: blue;
+            color: white;
+            padding-left: 5px;
+            padding-right: 5px;
+            border: none;
+        }
     </style>
 </head>
+
 <body>
-      <div class="main-content">
-       <div style="border: 1px solid skyblue;"> 
-        <div style="border: 1px solid black; padding: 25px;margin: 4px;">
-            <form id="details">
-                <h1>Inventory System</h1>
-                <div class="inside-c">
-                <label for="Product-name">Name:</label>
-                <input type="text" class="product-name" placeholder="Enter product name"/>
-                <label for="price">Price:</label>
-                <input type="text" class="price-input" placeholder="Enter Product Price"/>
-                <label for="quantity">Quantity:</label>
-                <input type="text" class="quantity-input" placeholder="Enter product Quantity"/>
-                <button type="submit" style="margin-top: 10px;">Add Product</button>
-                </div>
-            </form>
-            <div>
-            <h3>Inventory List</h3>
-            <table>
-                <thead>
-                     <th>Product Name</th>
-                     <th>Price</th>
-                     <th>Quantity</th>
-                </thead>
-                <tbody class="body-st">
-                    <!-- <tr>
+    <div class="main-content">
+        <div style="border: 1px solid skyblue;">
+            <div style="border: 1px solid black; padding: 25px;margin: 4px;">
+                <form id="details">
+                    <h1>Inventory System</h1>
+                    <div class="inside-c">
+                        <label for="Product-name">Name:</label>
+                        <input type="text" class="product-name" placeholder="Enter product name" />
+                        <label for="price">Price:</label>
+                        <input type="number" class="price-input" placeholder="Enter Product Price" />
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" class="quantity-input" placeholder="Enter product Quantity" />
+                        <button type="submit" style="margin-top: 10px;">Add Product</button>
+                    </div>
+                </form>
+                <div>
+                    <div style="display: flex; align-items: center;gap: 40px;">
+                        <h3>Inventory List</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </thead>
+                        <tbody class="body-st">
+                            <!-- <tr>
                         <td>Product 1</td>
                         <td>$10.00</td>
                         <td>5</td>
@@ -86,12 +112,13 @@
                         <td>$10.00</td>
                         <td>5</td>
                     </tr> -->
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-       </div>
-      </div>
+    </div>
 </body>
- <script src="inventory.js"></script>
+<script src="inventory.js"></script>
+
 </html>
