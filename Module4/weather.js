@@ -13,7 +13,7 @@ function handleInput(event) {
 
 
 
-function handleClick(event) {
+  function handleClick(event) {
      event.preventDefault();
      const err = document.querySelector('.err-mess');
      const cityName = document.querySelector('.city-name').value;
@@ -26,43 +26,46 @@ function handleClick(event) {
           err.textContent = "Enter the Valid Inputs";
      }
      else {
-          fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=f862069d0e86f8686e96aec5014dae92`)
-               .then((response) => {
-                    if (response.ok) {
-                         console.log(response.ok);
-                         return response.json();
-                    }
-                    else {
-                         console.log(response)
-                         if (response.status === 401) {
-                              err.style.display = 'block';
-                              err.textContent = 'Server did not Respond ';
-
-                         }
-                         else if (response.status === 404) {
-                              err.style.display = 'block';
-                              err.textContent = 'Invalid CityName';
-                         }
-                         celsius.textContent = "";
-                         cName.textContent = "";
-                         humidity.textContent = "";
-                         image.innerHTML = "";
-
-                    }
-               }).then((data) => {
-                    image.innerHTML = `<p>Weather Icon:</p><img src=https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png
-" />`
-                    celsius.textContent = `${data.main.temp - 273} C°`;
-                    cName.textContent = cityName;
-                    humidity.textContent = `${data.main.humidity} %`;
-                    console.log(data.main);
-                    err.style.display = 'none';
-               })
-               .catch((error) => {
-                    console.log(error);
-               });
+          async function fetchWeatherData(cityName) {
+               try {
+                   const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=f862069d0e86f8686e96aec5014dae92`);
+           
+                   if (response.ok) {
+                       const data = await response.json();
+                       
+                       image.innerHTML = `<p>Weather Icon:</p><img src=https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png />`;
+                       celsius.textContent = `${Math.round(data.main.temp - 273)} C°`;
+                       cName.textContent = cityName;
+                       humidity.textContent = `${data.main.humidity} %`;
+                       console.log(data.main);
+                       err.style.display = 'none';
+                   } else {
+                       console.log(response);
+           
+                       if (response.status === 401) {
+                           err.style.display = 'block';
+                           err.textContent = 'Server did not Respond';
+                       } else if (response.status === 404) {
+                           err.style.display = 'block';
+                           err.textContent = 'Invalid CityName';
+                       }
+           
+                       celsius.textContent = "";
+                       cName.textContent = "";
+                       humidity.textContent = "";
+                       image.innerHTML = "";
+                   }
+               } catch (error) {
+                   console.log(error);
+               }
+           }
+           
+           // Usage
+           fetchWeatherData(cityName);
+           
      }
 
 
      document.querySelector('.city-name').value = "";
 }
+
