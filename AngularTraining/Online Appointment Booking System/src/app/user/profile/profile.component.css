@@ -1,0 +1,115 @@
+
+main {
+    padding: 2em;
+}
+
+section {
+    background: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-edit
+{
+    background: black;
+    color: white;
+     width: 100px;
+     height: 40px;
+     border-radius: 5%;
+    border: none;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* General form styling */
+#edit-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+#edit-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+#edit-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+#edit-form input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.s-b{
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Submit button styling */
+#edit-form button[type="submit"] {
+    background-color: #575857;
+    color: white;
+    margin-bottom: 10px;
+}
+
+
+
+.cancelEdit {
+    background-color: #646363;
+    color: white;
+}
+
+
+
+/* Responsive design */
+@media (max-width: 600px) {
+    #edit-form {
+        padding: 15px;
+    }
+    
+    button {
+        font-size: 14px;
+    }
+}

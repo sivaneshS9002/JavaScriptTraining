@@ -1,0 +1,138 @@
+<header>
+    <h1>User-Management</h1>
+  </header>
+ <section id="user-management">
+
+    <section id="user-list">
+        <h2>Registered Users</h2>
+        <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Activestatus</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="user-table-body">
+                @for(user of userList; track  $index){
+                   <tr>
+                     <td>{{user.name}}</td>
+                     <td>{{user.email}}</td>
+                     <td>{{user.phoneNumber}}</td>
+                     <td>{{user.isActive}}</td>
+                     <td>{{user.role}}</td>
+                     <td>
+                        <i class="fa-regular fa-pen-to-square" (click)="editUser($index)"></i>
+                        <i class="fa-solid fa-delete-left" (click)="deleteUser($index)"></i>
+                        @if(user.isActive){
+                            <button (click)="toggleStatus($index)">Deactivate</button>
+                        }
+                        @else {
+                            <button (click)="toggleStatus($index)">activate</button>
+                        }
+                     </td>
+                   </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    </section>
+
+    <section id="Admin-list">
+        <h2 style="text-align: center;">Admins</h2>
+        <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Adminame</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Activestatus</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="admin-table-body">
+                 @for(admin of  adminList; track $index){
+                    <tr>
+                    <td>{{admin.name}}</td>
+                     <td>{{admin.email}}</td>
+                     <td>{{admin.phoneNumber}}</td>
+                     <td>{{admin.isActive}}</td>
+                     <td>{{admin.role}}</td>
+                     <td>
+                        <i class="fa-regular fa-pen-to-square" (click)="editAdmin($index)"></i>
+                        <i class="fa-solid fa-delete-left" (click)="deleteAdmin($index)"></i>
+                        @if(admin.isActive){
+                            <button (click)="toggleStatusadmin($index)">Deactivate</button>
+                        }
+                        @else {
+                            <button (click)="toggleStatusadmin($index)">activate</button>
+                        }
+                     </td>
+                    </tr>
+                 }
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+
+
+<section id="add-user">
+    <h2>Add New User</h2>
+
+    <form id="add-user-form" #addUser="ngForm" (submit)="AddUser(addUser)">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="userName" required #userName="ngModel" ngModel (change)="getName(userName)">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="userEmail" required #email="ngModel" ngModel (change)="getEmail(email)">
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="userPhoneNumber" required ngModel #phoneNumber="ngModel" (change)="getNumber(phoneNumber)">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="userPassword" required #password="ngModel" ngModel (change)="getPassword(password)">
+        <label for="role">Role:</label>
+        <select id="role" required ngModel name="Role" #role="ngModel" (change)="getRole(role)">
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        </select>
+
+
+        <button type="submit">Add User</button>
+    </form>
+</section>
+
+<section id="edit-user" style="display:none;">
+    <h2>Edit User</h2>
+    <form id="edit-user-form">
+        <label for="edit-username">Username:</label>
+        <input type="text" id="edit-username" name="edit-username" [(ngModel)]="editUsername" required>
+
+        <label for="edit-email">Email:</label>
+        <input type="email" id="edit-email" name="edit-email" [(ngModel)]="editEmail" required>
+
+        <label for="edit-phone">Phone Number:</label>
+        <input type="text" id="edit-phone" name="edit-phone" [(ngModel)]="editPhone" required>
+
+        <label for="edit-password">Password:</label>
+        <input type="password" id="edit-password" name="edit-password" [(ngModel)]="editPassword" required>
+        <label for="role">Role:</label>
+        <select id="edit-role" name="edit-role" [(ngModel)]="editRole" required>
+            <option>--Select the Role---</option>
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        </select>
+
+
+        <button type="submit" style="margin-bottom: 10px;" (click)="saveUserChanges()">Save Changes</button>
+        <button type="button" id="cancel-edit" (click)="redirectToAddUser()">Cancel</button>
+    </form>
+</section>
+ </section>

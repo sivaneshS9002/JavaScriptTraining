@@ -1,0 +1,27 @@
+/* General styling for the navigation links */
+nav {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adds space between the links */
+  }
+  
+  nav a {
+    text-decoration: none;
+  
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* Styling for active links */
+  .active-link {
+    color: blue;
+  }
+  
+
+
+  

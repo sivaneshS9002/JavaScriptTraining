@@ -1,0 +1,17 @@
+
+<div class="main-container">
+  <div class="inner-container">
+    <form id="login" ngForm #userDetail="ngForm" (submit)="checkUser(userDetail)">
+        <label for="email">Email:</label>
+        <input type="email" placeholder="Enter the email" class="user-email" name="UserEmail" required #enteredMail="ngModel" ngModel/>
+        <label for="password">Password:</label>
+        <div class="eye-section">
+         <input [type]="p" placeholder="Enter the password" class="user-password" name="UserPassword" ngModel #enteredPassword="ngModel" required/>
+         <i  class="fa-regular fa-eye eye-icon" (click)="showPassword()"></i>
+       </div> 
+        <button type="submit" class="LoginTO">Login</button>
+        <p>Don't have an account? <span style="color: blue;"  class="Sign-Up"><a routerLink='/SignUp' routerLinkActive="active">Sign-Up Now</a></span></p>
+    </form>
+    
+  </div>
+</div>

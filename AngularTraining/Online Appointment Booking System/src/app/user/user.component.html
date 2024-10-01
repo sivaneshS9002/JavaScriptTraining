@@ -1,0 +1,66 @@
+<header style="display: flex;justify-content: space-evenly;align-items: center;">
+    <h2>Appointment Management and Booking</h2>
+    <a routerLink="/Profile"><button>Go to Profile</button></a>
+    <a routerLink="/Login" routerLinkActive="router-link-active" ><i class="fa-solid fa-right-from-bracket logout-st fa-2x"></i></a>
+</header>
+<main>
+      <button (click)="openDetail()">Service Details</button>
+        <section id="appointment-form">
+            <h2>Select Your Appointment Details</h2>
+            <form id="booking-form" #Booking="ngForm" (submit)="bookForm(Booking)">
+                <label for="service">Select Service:</label>
+                <select id="service"   name="aName" required ngModel #selectedService="ngModel" [(ngModel)]="showService" (change)="Service(selectedService)">
+                    <option value="" disabled selected>--Select the Service--</option>
+                    @for(service of serviceList; track $index){
+                        <option [value]="service.serviceName">{{service.serviceName}}</option>
+                    }
+                </select>
+                  <label for="provider">Select Provider:</label>
+                    <input type="text" [disabled]="isDisabled"  name="aProvider" [(ngModel)]="showProvider" >
+                <label for="appointment-date">Select Date:</label>                 
+                 <input type="date" [disabled]="isDisabled"  id="appointment-date" name="aDate" #selectedAdate="ngModel" [(ngModel)]="showDate" ngModel [min]="showStartdate" [max]="showEnddate" required>
+                 @if(selectedAdate.value==blackoutP && !isDisabled){
+                   <p style="color: red;">Choose another date this is BlockOut period</p>
+                 }
+                <label for="appointment-time">Select Time:</label>
+                <input type="time" [disabled]="isDisabled" name="aTime" #selectedTime="ngModel"   (change)="handleSelectedTime(selectedTime)" ngModel  id="appointment-time"  required>
+                  @if( (userSelectedT<sTime || userSelectedT > eTime) && ableTime){
+                    <p style="color: red;">In valid time Choose Time Between {{sTime}}::{{sMin}}0 and {{eTime}}::{{eMin}}0</p>
+                  }
+                <button type="submit">Confirm Booking</button>
+            </form>
+        
+            <p id="blackout-warning" style="color: red; display: none;">
+                The selected date is unavailable due to blackout periods. Please choose a different date.
+            </p>
+        </section>
+        <nav>
+            <ul>
+                <li><a routerLink="/Lap">View Upcoming Appointments</a></li>
+                <li><a routerLink="/Lap">View Appointment History</a></li>
+            </ul>
+        </nav>
+
+        <div id="Detail-modal" class="modal">
+          <div class="modal-content">
+              <span class="close-btn" id="close-reschedule" (click)="closeDetail()">&times;</span>
+              <h3 style="text-align: center;">Service Details</h3>
+              @if(SelectedServiceForShowDetail){
+               <div class="card">
+                  <p>Service Name:<span>{{SelectedServiceForShowDetail}}</span></p>
+                  <p>Service Description:<span>{{SelectedDecrepition}}</span></p>
+                  <p>Service Duration:<span>{{SelectedDuration}}</span>minutes</p>
+                  <p>Service Price:<span>{{  SelectedPrice}}</span>rupees</p>
+                  <p>Provider Name:<span>{{showProvider}}</span></p>
+                  <p>Start Time:<span>{{showStarttime}}</span></p>
+                  <p>End Time:<span>{{showEndtime}}</span></p>
+                  <p>BlockOut Period:<span>{{blackoutP}}</span></p>
+               </div>
+              }@else {
+                <div class="card">
+                     <h3 style="color: red;text-align: center;">---Choose the Service to View the Service Details---</h3>
+               </div>
+              }
+          </div>
+      </div>
+</main>

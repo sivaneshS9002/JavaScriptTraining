@@ -1,0 +1,68 @@
+
+label
+{
+    display: block;
+    text-align: center;
+}
+input 
+{
+    display: block;
+    padding: 5px;
+}
+
+#login
+{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+button
+{
+    padding: 5px;
+    background-color: black;
+    color: white;
+    border: none;
+}
+ select
+ {
+    padding: 5px;
+ }
+ .main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+ }
+.inner-container
+{
+     
+    border: 2px solid grey;
+    padding: 20px;
+    border-radius: 5px;
+}
+.inner-container:hover{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.Sign-Up:hover
+{
+   cursor: pointer;
+   text-decoration: underline;
+}
+.user-password{
+    width: 250px;
+}
+
+@media (min-width:0px) and (max-width:320px)
+{
+    *{
+        font-size: 10px;
+    }
+}
+.eye-section{
+    position: relative;
+}
+.eye-icon{
+    position: absolute;
+    top:6px;
+     right: 5px;
+}

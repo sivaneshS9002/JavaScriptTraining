@@ -1,0 +1,28 @@
+<section id="report-section">
+    <div id="service-popularity-report" class="report-section">
+        <div class="report-header">
+            <h2>Service Popularity</h2>
+           
+        </div>
+        <div class="table-container"> 
+        <table class="report-table" id="service-popularity-table">
+            <thead>
+                <tr>
+                    <th>Service Name</th>
+                    <th>Total Bookings</th>
+                </tr>
+            </thead>
+            <tbody>
+              
+                @for(a of serviceArray;track $index){
+                    <tr>
+                        <td>{{a.sName}}</td>
+                        <td>{{a.len}}</td>
+                    </tr>
+                }
+            
+            </tbody>
+        </table>
+        </div>
+    </div>    
+</section>

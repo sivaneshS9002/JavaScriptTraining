@@ -1,0 +1,34 @@
+<section id="report-section">
+    <div id="appointment-history-report" class="report-section">
+        <div class="report-header">
+            <h2>Appointment History</h2>
+        </div>
+        <div class="table-container">
+        <table class="report-table" id="appointment-history-table">
+            <thead>
+                <tr>
+                    <th>User Email</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+              
+                 @for( u of history;track $index){
+                    <tr>
+                        <td>{{u.email}}</td>
+                        <td>{{u.aName}}</td>
+                        <td>{{u.aDate}}</td>
+                        <td>{{u.aTime}}</td>
+                        <td>{{u.aStatus}}</td>
+                    </tr>
+                 }
+                
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+</section>

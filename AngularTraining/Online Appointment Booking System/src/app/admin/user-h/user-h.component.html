@@ -1,0 +1,10 @@
+<header>
+    <h1 style="text-align: center;">Report Section</h1>
+</header>
+
+<nav>
+<a routerLink="userA" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">User Activity</a>
+  <a routerLink="popularity" routerLinkActive="active-link">Service Popularity</a>
+  <a routerLink="history" routerLinkActive="active-link">History</a>
+</nav>
+<router-outlet></router-outlet>

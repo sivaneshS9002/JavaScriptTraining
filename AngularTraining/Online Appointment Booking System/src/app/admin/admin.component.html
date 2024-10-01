@@ -1,0 +1,13 @@
+<header style="display: flex;align-items: center;justify-content: space-between;">
+    <h1>Admin Dashboard</h1>
+    <a (click)="routeToLogin()"  routerLinkActive="active"><i class="fa-solid fa-right-from-bracket logout-st fa-2x"></i></a>
+</header>
+
+<nav>
+    <ul>
+        <li><a routerLink="/sM">Service Management</a></li>
+        <li><a routerLink="/Apm">Appointment Management</a></li>
+        <li><a routerLink="/uM">User Management</a></li>
+        <li><a routerLink="/uH">Booking History</a></li>
+    </ul>
+</nav>

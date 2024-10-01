@@ -1,0 +1,148 @@
+<h1 style="text-align: center;">Appointment Management</h1>
+<main id="appointment-management">
+    <!-- Filter Section -->
+    <section id="appointment-filters">
+       <form #formData="ngForm" (submit)="Filter(formData)" id="appointment-filters1">
+        <div class="filter-group">
+            <label for="filter-date">Date:</label>
+            <input type="date" name="filter-date" id="filter-date" [(ngModel)]=" filterByDate">
+        </div>
+
+        <div class="filter-group">
+            <label for="filter-service">Service:</label>
+            <select id="filter-service" name="filter-provider" [(ngModel)]="selectedCategory">
+                <option selected value=''>All</option>
+                @for(s of serviceList; track $index){
+                <option [value]="s.serviceName">{{s.serviceName}}</option>
+                }
+            </select>
+        </div>
+        <div class="filder-group">
+            <label for="filter-status">Status:</label>
+            <select name="filter-status" [(ngModel)]="Selectedstatus">
+                <option selected value="">--Select Status--</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Cancelled">Cancelled</option>
+                <option value="Pending">Pending</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
+
+        <!-- <div class="filter-group">
+            <label for="filter-provider">Provider:</label>
+            <select id="providerSection" name="filter-provider" [(ngModel)]="selectedProvider">
+            <option selected value=''>choose provider</option>
+            @for(s of serviceList; track $index){
+            <option [value]="s.serviceProvider">{{s.serviceProvider}}</option>
+            }
+            </select>
+        </div> -->
+       <div>
+        <button type="submit"  class="btn apply-filter-btn">Apply Filters</button>
+       </div>
+       </form>
+
+    </section>
+
+    <!-- Appointment List -->
+    <section id="appointments-list">
+        <div class="card-container">
+          @for(u of userList;track $index){
+             @for(b of u.Booking;track $index){
+                @if(boolValue){
+                    <div class="card">
+                        <p>Email:<span>{{u.email}}</span></p>
+                        <p>Service:<span>{{b.aName}}</span></p>
+                        <p>Date:<span>{{b.aDate}}</span></p>
+                        <p>Status:<span>{{b.aStatus}}</span></p>
+                        <button (click)="reShedule(u.email,b.aName)">Reschedule</button>
+                        <button (click)="cancelApm(u.email,b.aName)">Cancel</button>
+                        <button t (click)="statusModal(u.email,b.aName)"> Edit Status</button>
+                    </div> 
+                 } 
+                 @else if(selectedCategory1===b.aName){
+                    <div class="card ">
+                        <p>Email:<span>{{u.email}}</span></p>
+                        <p>Service:<span>{{b.aName}}</span></p>
+                        <p>Date:<span>{{b.aDate}}</span></p>
+                        <p>Status:<span>{{b.aStatus}}</span></p>
+                        <button (click)="reShedule(u.email,b.aName)">Reschedule</button>
+                        <button (click)="cancelApm(u.email,b.aName)">Cancel</button>
+                        <button  (click)="statusModal(u.email,b.aName)"> Edit Status</button>
+                    </div>
+                 }
+                 @else if(filterDate1 == b.aDate){
+                    <div class="card ">
+                        <p>Email:<span>{{u.email}}</span></p>
+                        <p>Service:<span>{{b.aName}}</span></p>
+                        <p>Date:<span>{{b.aDate}}</span></p>
+                        <p>Status:<span>{{b.aStatus}}</span></p>
+                        <button (click)="reShedule(u.email,b.aName)">Reschedule</button>
+                        <button (click)="cancelApm(u.email,b.aName)">Cancel</button>
+                        <button (click)="statusModal(u.email,b.aName)"> Edit Status</button>
+                    </div>
+                 }
+                 @else if( Selectedstatus1 === b.aStatus) {
+                    <div class="card ">
+                        <p>Email:<span>{{u.email}}</span></p>
+                        <p>Service:<span>{{b.aName}}</span></p>
+                        <p>Date:<span>{{b.aDate}}</span></p>
+                        <p>Status:<span>{{b.aStatus}}</span></p>
+                        <button (click)="reShedule(u.email,b.aName)">Reschedule</button>
+                        <button (click)="cancelApm(u.email,b.aName)">Cancel</button>
+                        <button (click)="statusModal(u.email,b.aName)"> Edit Status</button>
+                    </div>
+                 }         
+             }
+          }
+        </div>
+    </section>
+
+    <!-- Appointment Actions
+    <div id="appointment-actions">
+        <button class="btn showReschedule-form">Reschedule Appointment</button>
+        <button class="btn showCancel-form">Cancel Appointment</button>
+    </div> -->
+
+    <!-- Reschedule Form -->
+    <div id="reschedule-form" class="modal1" style="display: none;">
+        <div class="modal-content">
+            <h3>Reschedule Appointment</h3>
+            <form id="reschedule-appointment-form" ngForm (submit)="handleReseduleData()">
+                <label for="email">Email Id:</label>
+                <input type="text" name="email" [value]="editEmail" readonly/>
+                <label for="serviceName">ServiceName</label>
+                <input type="text" name="serviceName" [value]="editServiceName" readonly/>
+                <label for="new-date">New Date:</label>
+                <input type="date" name="newDate" id="new-date" [(ngModel)]="editDate" required>
+
+                <label for="new-time">New Time:</label>
+                <input type="time" name="newTime" id="new-time" [(ngModel)]="editTime" required>
+
+                <button type="submit" class="btn">Submit</button>
+                <button type="button" (click)="hideReshedule()" class="btn hideReschedule-Form">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Status Management Modal -->
+    <div id="manage-status-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close"(click)="closestatusModal()">&times;</span>
+            <h2>Manage Appointment Status</h2>
+            <form id="manage-status-form">
+                <label for="status">Select Status:</label>
+                <select id="status" name="status" [(ngModel)]="editStatus" required>
+                    <option selected disabled value="">--status--</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Canceled</option>
+                </select>
+                <button type="submit" class="status-st" (click)="upDateStatus()">Update Status</button>
+            </form>
+        </div>
+    </div>
+
+   
+</main>

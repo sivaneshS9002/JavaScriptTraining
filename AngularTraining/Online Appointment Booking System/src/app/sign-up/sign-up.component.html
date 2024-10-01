@@ -1,0 +1,66 @@
+
+
+    <div class="main-container">
+        
+        <form id="sign-up" #userForm='ngForm' (submit)="newUser(userForm)">
+            <label for="userName">Name:</label>
+            <input type="text" name="userName"
+             class="user-Name" 
+             placeholder="Enter your Name" required maxlength="10" minlength="2" ngModel #userName="ngModel" (change)="getUserName(userName)" pattern="[a-zA-Z].+[0-9]"/>
+            @if(userName.invalid && userName.touched){
+                @if(userName.hasError('required')){
+                  <p style="color: red;">Enter the userName</p>
+                }
+                 @else if (userName.hasError('maxlength')) {
+                     <p style="color: red;">username must have Atmost 10 characters</p>
+                 }
+                 @else if (userName.hasError('minlength')) {
+                    <p style="color: red;">username must have Atleast 2 characters</p>
+                 }
+                 @else if (userName.hasError('pattern')) {
+                    <p style="color: red;">Enter the valid name</p>
+                 }  
+            }
+            <label for="Email">Email:</label>
+            <input type="email" name="userEmail" class="user-Email" placeholder="Enter your email" required ngModel #userEmail="ngModel" (change)="getUserEmail(userEmail)" pattern="^[a-zA-Z]+[0-9]+@.+[.com]"/>
+            @if(userEmail.invalid && userEmail.touched){
+                @if(userEmail.hasError('required')){
+                    <p style="color: red;">Enter the email</p>
+                }
+                @else if(userEmail.hasError('pattern')){
+                    <p style="color: red;">please enter the valid email</p>
+                }
+            }
+            <label for="PhoneNumber">Phone Number:</label>
+            <input type="text" name="phoneNumber" class="user-phoneNum" placeholder="Enter ten digit Phone Number" maxlength="10" minlength="10" required  (change)="getUserPhone(userPhone)" #userPhone="ngModel"  pattern="^[0-9]"  ngModel/>
+            @if(userPhone.invalid && userPhone.touched){
+                @if(userPhone.hasError('required')){
+                    <p style="color: red;">Enter the password</p>
+                }
+                @else if (userPhone.hasError('minlength') || userPassword.hasError('maxlength')) {
+                    <p style="color: red;">Phone number must be in length 10</p>
+                }
+            }
+            <label for="password">Password:</label>
+           <div class="eye-section">
+            <input [type]="p" name="UserPassword" class="user-pass" placeholder="Enter the password" pattern="^[a-zA-Z].+[0-9].+" required  (change)="getUserPassword(userPassword)" #userPassword="ngModel" ngModel minlength="4" maxlength="10"/>
+            <i  class="fa-regular fa-eye eye-icon" (click)="showPassword()"></i>
+           </div> 
+    
+            @if(userPassword.invalid && userPassword.touched){
+                @if(userPassword.hasError('required')){
+                    <p style="color: red;">Enter the required password</p>
+                }
+                @else if (userPassword.hasError('pattern')) {
+                    <p style="color: red;">enter the valid password</p>
+                }
+                @else if (userPassword.hasError('minlength') || userPassword.hasError('maxlength')) {
+                 <p style="color: red;">password has min of 4 and max of 10 character</p>
+                }
+            }
+            <button type="submit">SignUp</button>
+            <p>Already have an account? <span style="color: blue;"  class="sign-st"><a routerLink="/Login" routerLinkActive="active">Login Now</a> </span></p>
+        </form>
+    </div>
+ 
+

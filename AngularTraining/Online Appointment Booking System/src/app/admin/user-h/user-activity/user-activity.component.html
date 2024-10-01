@@ -1,0 +1,28 @@
+<section id="report-section">
+<div id="user-activity-report" class="report-section">
+    <div class="report-header">
+        <h2>User Activity</h2>
+     
+    </div>
+    <div class="table-container">
+    <table class="report-table" id="user-activity-table">
+        <thead>
+            <tr>
+                <th>User Email</th>
+                <th>Total Bookings</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+               @for(u of userArray;track $index){
+                  <tr>
+                     <td>{{u.email}}</td>
+                     <td>{{u.len}}</td>
+                  </tr>
+               }
+            
+        </tbody>
+    </table>
+    </div>
+</div>
+</section>

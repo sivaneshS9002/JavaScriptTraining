@@ -1,0 +1,77 @@
+  <div class="header" style="display: flex;justify-content: space-around;;align-items: center;padding: 10px;background-color: black;color: white;">
+    <h1 style="text-align: center;padding-left: 20px;">Appointment Listing Page</h1>
+    <a (click)="routeToLogin()"><i style="color: white;font-size: 20px;" class="fa-solid fa-right-from-bracket"></i></a>
+  </div>
+<section id="appointment-management">
+    <h2 style="text-align: center;">Upcoming Appointments</h2>
+    <ul id="upcoming-list">
+       @if(showUpMessage){
+        @for(i of userList; track $index){
+          @if(i.email === currentUser){
+              @for(e of i.Booking; track $index){
+                @if(e.aStatus === "Pending" || e.aStatus === "Confirmed"){
+                <li>
+                    <div style="padding: 5px;">
+                        <strong>Service:</strong>{{e.aName}}<br>
+                        <strong>Date:</strong>{{e.aDate}}<br>
+                        <strong>Time:</strong>{{e.aTime}}<br>
+                        <strong>Status:</strong>{{e.aStatus}}<br>
+                        <button style="margin-right: 10px;" (click)="openRescheduleForm($index,e.aName)">Reschedule</button>
+                        <button (click)="cancelAppointment($index)">Cancel</button>
+                    </div>
+                </li>
+              }
+            }
+          }
+         }
+        }@else {
+           <h3 style="padding-left: 450px;color: red;">----Currently there are no Upcoming Appointments ----</h3>
+        }
+    </ul>
+</section>
+<section id="appointment-management">
+    <h2 style="text-align: center;">Appointment History</h2>
+    <ul id="history-list">
+        @for(i of userList; track $index){
+        @if(i.email === currentUser){
+            @for(e of i.Booking; track $index){
+              @if(e.aStatus === "Cancelled" || e.aStatus === "Completed"){
+              <li>
+                  <div style="padding: 5px;">
+                      <strong>Service:</strong>{{e.aName}}<br>
+                      <strong>Date:</strong>{{e.aDate}}<br>
+                      <strong>Time:</strong>{{e.aTime}}<br>
+                      <strong>Status:</strong>{{e.aStatus}}<br>
+                  </div>
+              </li>
+            }
+          }
+        }
+       }
+    </ul>
+</section>
+
+
+
+<div id="reschedule-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="close-reschedule" (click)="rescheduleClose()">&times;</span>
+        <h3>Reschedule Appointment</h3>
+        <form >
+        <label for="new-date">New Date:</label>
+        <input type="date" id="new-date" name="rescheduledDate" [(ngModel)]="rescheduledDate"  [min]="setRstartDate" [max]="setRendDate" >
+        <label for="new-time">New Time:</label>
+        <input type="time" id="new-time" name="rescheduledTime"  [(ngModel)]="rescheduledTime" [max]="setRstartTime" [min]="setRendTime" >
+        <button type="submit" id="save-reschedule" (click)="closeRe()">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<div id="cancel-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="close-cancel" (click)="Cancelclose()">&times;</span>
+        <h3>Cancel Appointment</h3>
+        <p>Are you sure you want to cancel this appointment?</p>
+        <button id="confirm-cancel" (click)="cA()">Yes, Cancel</button>
+    </div>
+</div>

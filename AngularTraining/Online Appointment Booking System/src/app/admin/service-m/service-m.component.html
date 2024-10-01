@@ -1,0 +1,87 @@
+
+<header >
+    <h2 style="color: white;">Service Management</h2>
+</header>
+<section id="service-management">
+   <div id="service-actions">
+       <button class="Add-service" (click)="showForm()">Add Service</button>
+   </div>
+   <div id="service-details" style="display: none;" >
+      <h1 style="text-align: center;">Add Service</h1>
+       <form id="service-form"  #serviceForm='ngForm'  (submit)="serviceform(serviceForm)">
+           <label for="service-name">Service Name:</label>
+           <input type="text" id="service-name" placeholder="Enter Service Name"  name="serviceName" [(ngModel)]="eName"  required>
+
+           <label for="service-description">Description:</label>
+           <textarea id="service-description" placeholder="Enter Service Description"  ngModel name="serviceDescription"  [(ngModel)]="eDescription"  required></textarea>
+
+           <label for="service-duration">Duration (minutes):</label>
+           <input type="number" id="service-duration" placeholder="Duration in minutes" ngModel name="serviceDuration" [(ngModel)]="eDuration" required>
+
+           <label for="service-price">Price (Rs):</label>
+           <input type="number" id="service-price" placeholder="Price in Rupees" ngModel name="servicePrice" [(ngModel)]="ePrice" required>
+
+           <label for="service-providers">Associated Provider:</label>
+           <input type="text" id="service-providers" placeholder="Enter Provider"  ngModel name="serviceProvider" [(ngModel)]="eProvider" required>
+
+           <!-- Availability Section -->
+           <div id="service-availability" style="margin-top: 20px;">
+               <h3>Set Service Availability</h3>
+               <label for="availability-start-date">Start Date:</label>
+               <input type="date" id="availability-start-date"  [min]="startD" [(ngModel)]="eStartdate" name="startdate" ngModel>
+
+               <label for="availability-end-date">End Date:</label>
+               <input type="date" id="availability-end-date" name="enddate"  [(ngModel)]="eEnddate" ngModel>
+
+               <label for="availability-start-time">Start Time:</label>
+               <input type="time" id="availability-start-time" name="starttime" [(ngModel)]="eStarttime"  ngModel>
+
+               <label for="availability-end-time">End Time:</label>
+               <input type="time" id="availability-end-time" name="endtime" [(ngModel)]="eEndtime" ngModel>
+
+               <label for="blackout-period">Blackout Period:</label>
+               <!-- <textarea id="blackout-periods"
+                   placeholder="Enter blackout period, e.g., 2024-09-10 " rows="3" ngModel name="blackouttime"  ngSkipHydration>
+                </textarea> -->
+                <input type="date" name="blackoutperiod" [(ngModel)]="eBlackout" ngModel>
+
+           </div>
+
+           <button type="submit" id="submit-service-btn">Submit</button>
+           <button type="button" class="Cancel-form" (click)="cancelForm()">Cancel</button>
+       </form>
+   </div>
+   <div id="services-list" class="card-container">
+    @if(serviceList.length == 0) {
+        <div class="no-services">
+            <p>-- No Services Available --</p>
+        </div>
+    } @else {
+        @for (s of serviceList; track $index) {
+        <div class="service-card">
+            <div class="service-info">
+                <h3>{{ s.serviceName }}</h3>
+                <p>{{ s.serviceDescription }}</p>
+                <ul>
+                    <li><strong>Duration:</strong> {{ s.serviceDuration }} min</li>
+                    <li><strong>Price:</strong> Rs {{ s.servicePrice }}</li>
+                    <li><strong>Provider:</strong> {{ s.serviceProvider }}</li>
+                    <li><strong>Date</strong>{{ s.serviceStartdate }} - {{ s.serviceEnddate }} </li>
+                    <li><strong>Time:</strong>{{ s.serviceStarttime }} - {{ s.serviceEndtime }}</li>
+                    <li><strong>BlackOutPeriod:</strong>{{ s.blackotPeriod }}</li>
+                </ul>
+            </div>
+            <div class="service-actions">
+                <button class="edit-btn" (click)="editService($index)">
+                    <i class="fa-regular fa-pen-to-square"></i> Edit
+                </button>
+                <button class="delete-btn" (click)="deleteService($index)">
+                    <i class="fa-solid fa-trash"></i> Delete
+                </button>
+            </div>
+        </div>
+        }
+    }
+</div>
+
+</section>
